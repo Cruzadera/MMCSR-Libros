@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prefSync_key" translatable="false">prefSync</string>
+    <string name="prefSync_title">Mostrar cuadro de dialogo de confirmación</string>
+    <string name="prefSync_summaryOn">Si</string>
+    <string name="prefSync_summaryOff">No</string>
+    <bool name="prefSync_defaultValue">true</bool>
+</resources>

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="margin_top_constraint">52dp</dimen>
     <dimen name="margin_top_imagen">64dp</dimen>
+    <dimen name="main_bottom_sheet_rlPanel_padding">16dp</dimen>
+    <dimen name="main_bottom_sheet_rlPanel_peekHeight">80dp</dimen>
 </resources>

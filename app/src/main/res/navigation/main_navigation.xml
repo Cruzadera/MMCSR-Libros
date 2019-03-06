@@ -29,7 +29,15 @@
         android:id="@+id/agregarFragment"
         android:name="es.iessaladillo.maria.mmcsr_libros.ui.agregar.AgregarFragment"
         android:label="fragment_agregar"
-        tools:layout="@layout/fragment_agregar" />
+        tools:layout="@layout/fragment_agregar" >
+        <action
+            android:id="@+id/action_agregarFragment_to_listaFragment"
+            app:destination="@id/listaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/preferenciasFragment"
         android:name="es.iessaladillo.maria.mmcsr_libros.ui.preferencias.PreferenciasFragment"

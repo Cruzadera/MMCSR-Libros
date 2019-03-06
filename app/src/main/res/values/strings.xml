@@ -19,4 +19,9 @@
     <string name="main_error_saving">Se ha producido un error</string>
     <string name="main_saved_succesfully">Se ha guardado correctamente</string>
     <string name="deshacer">Deshacer</string>
+    <string name="main_fragment_yes">Si</string>
+    <string name="main_fragment_no">No</string>
+    <string name="main_fragment_sure">¿Estas seguro que desea guardar el libro?</string>
+    <string name="main_fragment_confirm_deletion">Confirmación</string>
+    <string name="title_preferencias">Preferencias</string>
 </resources>

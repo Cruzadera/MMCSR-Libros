@@ -5,6 +5,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,21 +30,27 @@ import java.util.Objects;
 
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
 import es.iessaladillo.maria.mmcsr_libros.R;
 import es.iessaladillo.maria.mmcsr_libros.base.EventObserver;
 import es.iessaladillo.maria.mmcsr_libros.data.RepositoryImpl;
 import es.iessaladillo.maria.mmcsr_libros.data.local.AppDatabase;
 import es.iessaladillo.maria.mmcsr_libros.data.local.model.Libro;
 import es.iessaladillo.maria.mmcsr_libros.databinding.FragmentAgregarBinding;
+import es.iessaladillo.maria.mmcsr_libros.ui.dialog.YesNoDialogFragment;
 import es.iessaladillo.maria.mmcsr_libros.utils.KeyboardUtils;
 import es.iessaladillo.maria.mmcsr_libros.utils.SnackbarUtils;
 import es.iessaladillo.maria.mmcsr_libros.utils.TextWatcherUtils;
 
-public class AgregarFragment extends Fragment {
+public class AgregarFragment extends Fragment implements YesNoDialogFragment.Listener, SharedPreferences.OnSharedPreferenceChangeListener{
 
+    private static final String TAG_DIALOG_FRAGMENT = "TAG_DIALOG_FRAGMENT";
+    private static final int RC_DIALOG_FRAGMENT = 1;
     private AgregarFragmentViewModel viewModel;
     private FragmentAgregarBinding b;
     private NavController navController;
+    private SharedPreferences sharedPreferences;
 
     public static AgregarFragment newInstance() {
         return new AgregarFragment();
@@ -62,6 +70,7 @@ public class AgregarFragment extends Fragment {
         viewModel = ViewModelProviders.of(this, new AgregarFragmentViewModelFactory(requireActivity().getApplication(),
                 new RepositoryImpl(appDatabase.libroDao()))).get(AgregarFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         setupViews();
         observeSuccessMessage();
         observeErrorMessage();
@@ -82,29 +91,30 @@ public class AgregarFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Conflicts navigation lib with de action in the item menu
-        if(item.getItemId() == R.id.menuAdd){
-            save();
+        if(item.getItemId() == R.id.menuAdd) {
+            showConfirmationDialog();
         }else{
             requireActivity().onBackPressed();
         }
         return true;
     }
 
-    private void save() {
+    private boolean save() {
+        boolean estaGuardado = true;
         if (isValidForm()) {
             KeyboardUtils.hideSoftKeyboard(requireActivity());
             SnackbarUtils.snackbar(b.tilAutor, getString(R.string.main_saved_succesfully));
             Libro libro = getDataLibro();
             viewModel.insertarLibro(libro);
-            navController.navigate(R.id.listaFragment);
         } else {
             KeyboardUtils.hideSoftKeyboard(requireActivity());
             SnackbarUtils.snackbar(b.tilAutor, getString(R.string.main_error_saving));
             checkField(b.tilAutor, b.txtAutor);
             checkField(b.tilTitulo, b.txtTitulo);
             checkField(b.tilFecha, b.txtFecha);
-
+            estaGuardado = false;
         }
+        return  estaGuardado;
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -114,6 +124,7 @@ public class AgregarFragment extends Fragment {
         libro.setAutor(b.txtAutor.getText().toString());
         libro.setTitulo(b.txtTitulo.getText().toString());
         libro.setFechaPublicacion(b.txtFecha.getText().toString());
+        libro.setUrlPortada(b.txtUrlPortada.getText().toString());
         return libro;
     }
 
@@ -178,4 +189,45 @@ public class AgregarFragment extends Fragment {
         return false;
     }
 
+    private void showConfirmationDialog() {
+        YesNoDialogFragment dialogFragment = YesNoDialogFragment.newInstance(
+                getString(R.string.main_fragment_confirm_deletion),
+                getString(R.string.main_fragment_sure), getString(R.string.main_fragment_yes),
+                getString(R.string.main_fragment_no), this, 1);
+        dialogFragment.setTargetFragment(this, RC_DIALOG_FRAGMENT);
+        dialogFragment.show(getFragmentManager(), TAG_DIALOG_FRAGMENT);
+    }
+
+    @Override
+    public void onPositiveButtonClick(DialogInterface dialog) {
+        if(save()){
+            navController.navigate(R.id.listaFragment);
+        }
+    }
+
+    @Override
+    public void onNegativeButtonClick(DialogInterface dialog) {
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//        if (TextUtils.equals(key, getString(R.string.prefSync_key))) {
+//            showConfirmationDialog();
+//        }else{
+//            save();
+//        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
+    }
 }

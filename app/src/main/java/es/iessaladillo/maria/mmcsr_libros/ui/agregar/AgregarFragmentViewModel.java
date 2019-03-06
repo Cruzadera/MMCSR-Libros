@@ -16,6 +16,7 @@ import es.iessaladillo.maria.mmcsr_libros.data.local.model.Libro;
 class AgregarFragmentViewModel extends ViewModel {
     private final Application application;
     private final Repository repository;
+    private boolean dialogo;
     private final MutableLiveData<Libro> insertTrigger = new MutableLiveData<>();
     private final MediatorLiveData<Event<String>> successMessage = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> errorMessage = new MediatorLiveData<>();
@@ -58,5 +59,13 @@ class AgregarFragmentViewModel extends ViewModel {
 
     void insertarLibro(Libro libro) {
         insertTrigger.setValue(libro);
+    }
+
+    public boolean isDialogo() {
+        return dialogo;
+    }
+
+    public void setDialogo(boolean dialogo) {
+        this.dialogo = dialogo;
     }
 }

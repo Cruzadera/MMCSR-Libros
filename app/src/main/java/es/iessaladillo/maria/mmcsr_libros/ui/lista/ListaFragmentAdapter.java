@@ -76,7 +76,7 @@ public class ListaFragmentAdapter extends ListAdapter<Libro, ListaFragmentAdapte
             lblAutor.setText(libro.getAutor());
             Picasso.with(itemView.getContext()).load(libro.getUrlPortada())
                     .error(R.mipmap.ic_launcher_round)
-                    .resize(100, 100)
+                    .resize(200, 200)
                     .into(imgPortada);
         }
     }
