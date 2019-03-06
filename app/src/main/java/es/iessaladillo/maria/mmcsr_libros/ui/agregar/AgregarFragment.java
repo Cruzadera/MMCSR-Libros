@@ -32,7 +32,6 @@ public class AgregarFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AgregarFragmentViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

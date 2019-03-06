@@ -2,9 +2,13 @@ package es.iessaladillo.maria.mmcsr_libros.data.local.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "libro")
 public class Libro {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "idLibro")
+    private long idLibro;
     @ColumnInfo(name = "titulo")
     private String titulo;
     @ColumnInfo(name = "autor")
@@ -16,12 +20,21 @@ public class Libro {
     @ColumnInfo(name = "sinopsis")
     private String sinopsis;
 
-    public Libro(String titulo, String autor, String fechaPublicacion, String urlPortada, String sinopsis) {
+    public Libro(long idLibro, String titulo, String autor, String fechaPublicacion, String urlPortada, String sinopsis) {
+        this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
         this.urlPortada = urlPortada;
         this.sinopsis = sinopsis;
+    }
+
+    public long getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(long idLibro) {
+        this.idLibro = idLibro;
     }
 
     public String getTitulo() {

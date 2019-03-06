@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnuSave"
+        android:title="@string/agregar_mnu_title"
+        android:icon="@drawable/ic_add_white_24dp"
+        app:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/mnuOptions"
+        android:title="@string/titulo_mnu_preferencias"
+        app:showAsAction="never"/>
+</menu>

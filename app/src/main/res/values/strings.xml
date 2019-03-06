@@ -3,4 +3,14 @@
     <string name="title_libros">Mis libros favoritos</string>
     <string name="no_libros">Todavía no hay ningún libro</string>
     <string name="description_img_portada">Imagen de la portada del libro</string>
+    <string name="list_deleted_successfully">Deleted successfully</string>
+    <string name="list_error_deleting">Error deleting</string>
+    <string name="titulo_mnu_preferencias">Preferencias</string>
+    <string name="title_agregar">Agregar libro</string>
+    <string name="titulo_hint">Titulo</string>
+    <string name="autor_a_hint">Autor/a</string>
+    <string name="fecha_hint">Año de publicación</string>
+    <string name="url_portada_hint">URL Portada</string>
+    <string name="sinopsis_hint">Sinopsis</string>
+    <string name="agregar_mnu_title">Agregar</string>
 </resources>

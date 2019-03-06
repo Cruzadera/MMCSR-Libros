@@ -9,6 +9,7 @@ import es.iessaladillo.maria.mmcsr_libros.data.local.model.Libro;
 
 @Database(entities = {Libro.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
+
     private static final String DATABASE_NAME = "libros.db";
 
     public abstract LibroDAO libroDao();
