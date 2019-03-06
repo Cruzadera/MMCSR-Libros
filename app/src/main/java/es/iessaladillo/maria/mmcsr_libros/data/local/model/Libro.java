@@ -2,6 +2,7 @@ package es.iessaladillo.maria.mmcsr_libros.data.local.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "libro")
@@ -27,6 +28,11 @@ public class Libro {
         this.fechaPublicacion = fechaPublicacion;
         this.urlPortada = urlPortada;
         this.sinopsis = sinopsis;
+    }
+
+    @Ignore
+    public Libro() {
+
     }
 
     public long getIdLibro() {

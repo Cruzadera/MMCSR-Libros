@@ -29,8 +29,7 @@ public class ListaFragmentAdapter extends ListAdapter<Libro, ListaFragmentAdapte
             public boolean areContentsTheSame(@NonNull Libro oldItem, @NonNull Libro newItem) {
                 return oldItem.getTitulo().equals(newItem.getTitulo())&&
                         oldItem.getAutor().equals(newItem.getAutor()) &&
-                        oldItem.getFechaPublicacion().equals(newItem.getFechaPublicacion()) &&
-                        oldItem.getUrlPortada().equals(newItem.getUrlPortada());
+                        oldItem.getFechaPublicacion().equals(newItem.getFechaPublicacion());
             }
         });
     }
@@ -76,8 +75,8 @@ public class ListaFragmentAdapter extends ListAdapter<Libro, ListaFragmentAdapte
             lblFecha.setText(libro.getFechaPublicacion());
             lblAutor.setText(libro.getAutor());
             Picasso.with(itemView.getContext()).load(libro.getUrlPortada())
-                    .error(R.drawable.ic_not_interested_black_24dp)
-                    .resize(200, 200)
+                    .error(R.mipmap.ic_launcher_round)
+                    .resize(100, 100)
                     .into(imgPortada);
         }
     }

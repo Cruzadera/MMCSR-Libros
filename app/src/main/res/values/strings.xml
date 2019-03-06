@@ -3,8 +3,8 @@
     <string name="title_libros">Mis libros favoritos</string>
     <string name="no_libros">Todavía no hay ningún libro</string>
     <string name="description_img_portada">Imagen de la portada del libro</string>
-    <string name="list_deleted_successfully">Deleted successfully</string>
-    <string name="list_error_deleting">Error deleting</string>
+    <string name="list_deleted_successfully">Borrado correctamente</string>
+    <string name="list_error_deleting">Error, no se ha podido borrar</string>
     <string name="titulo_mnu_preferencias">Preferencias</string>
     <string name="title_agregar">Agregar libro</string>
     <string name="titulo_hint">Titulo</string>
@@ -12,5 +12,11 @@
     <string name="fecha_hint">Año de publicación</string>
     <string name="url_portada_hint">URL Portada</string>
     <string name="sinopsis_hint">Sinopsis</string>
+    <string name="libro_inserted_successfully">Insertado correctamente</string>
+    <string name="libro_error_inserting">Error en la inserción</string>
+    <string name="main_invalid_data">Campo requerido</string>
     <string name="agregar_mnu_title">Agregar</string>
+    <string name="main_error_saving">Se ha producido un error</string>
+    <string name="main_saved_succesfully">Se ha guardado correctamente</string>
+    <string name="deshacer">Deshacer</string>
 </resources>

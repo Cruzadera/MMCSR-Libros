@@ -58,6 +58,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/lstLibros" />
 
+            <!--<include-->
+                <!--android:id="@+id/rlPanel"-->
+                <!--layout="@layout/fragment_lista_bottom_sheet"/>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
